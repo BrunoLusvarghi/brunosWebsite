@@ -1,0 +1,29 @@
+
+<form class="example-form">
+    <mat-form-field class="example-full-width col-md-12">
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip
+          *ngFor="let country of selectedCountries"
+          (removed)="remove(country)">
+          {{country.name}}
+          <mat-icon matChipRemove >cancel</mat-icon>
+        </mat-chip>
+        <input  
+        placeholder="Countries"
+        #searchInput
+          type="text" matInput 
+          [formControl]="myControl" 
+          [matAutocomplete]="auto" 
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)" >
+    
+      </mat-chip-list>
+      
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option  *ngFor="let country of filteredOptions | async" [value]="country">
+          {{country.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>

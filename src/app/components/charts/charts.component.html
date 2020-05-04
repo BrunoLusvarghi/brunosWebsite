@@ -1,0 +1,29 @@
+<div class="form-group">
+
+  <div class="row">
+    <div class="col-md-1">
+      <button [disabled]="chartSelector == 'confirmed'" type="button" class="btn btn-success"
+        (click)="changeChart('confirmed')">Confirmed</button>
+    </div>
+    <div class="col-md-1">
+      <button [disabled]="chartSelector == 'deaths'" type="button" class="btn btn-primary"
+        (click)="changeChart('deaths')">Deaths</button>
+    </div>
+
+    <div class="col-md-10" style="justify-content: center;">
+      <h1>{{chartSelector | titlecase }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+    <app-multiselect-autocomplete [countries]="covidData" ></app-multiselect-autocomplete>
+  </div>
+  </div>
+</div>
+
+
+<div *ngIf="chartDatasets != null && chartLabels != null" style="display: block">
+  <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors"
+    [options]="chartOptions" [legend]="false" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
