@@ -18,13 +18,17 @@ import {MatInputModule} from '@angular/material/input';
 import { MultiselectAutocompleteComponent } from './components/multiselect-autocomplete/multiselect-autocomplete.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
+import { HorizontalBarChartComponent } from './components/charts/horizontal-bar-chart/horizontal-bar-chart.component';
+import { LineChartComponent } from './components/charts/line-chart/line-chart.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ChartsComponent,
-    MultiselectAutocompleteComponent
+    MultiselectAutocompleteComponent,
+    HorizontalBarChartComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,

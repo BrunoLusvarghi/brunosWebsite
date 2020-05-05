@@ -8,20 +8,17 @@
           {{country.name}}
           <mat-icon matChipRemove >cancel</mat-icon>
         </mat-chip>
-        <input  
+        <input  #input 
         placeholder="Countries"
-        #searchInput
           type="text" matInput 
           [formControl]="myControl" 
           [matAutocomplete]="auto" 
-          [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          (matChipInputTokenEnd)="add($event)" >
+          [matChipInputFor]="chipList">
     
       </mat-chip-list>
       
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option  *ngFor="let country of filteredOptions | async" [value]="country">
+        <mat-option (click)="add(country)"  *ngFor="let country of filteredOptions | async" [value]="country">
           {{country.name}}
         </mat-option>
       </mat-autocomplete>
