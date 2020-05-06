@@ -27,6 +27,7 @@ export class ChartService {
   chartSelectorChange: Subject<string> = new Subject<string>();
   setChartType(chartType : string){
     this.chartSelector = chartType;
+    this.loadHorizontalBarChartData();
   }
 
 
@@ -101,13 +102,13 @@ export class ChartService {
     this.covidDataService.getCountriesData().subscribe((res: any) => {
       this.covidData = res.data;
       this.isLoaded = true;
-      console.log(this.covidData);
+      
     });
 
   }
 
 
-  loadChartData(chartSelector) {
+  loadHorizontalBarChartData() {
 
     this.chartDatasets = [];
 
@@ -115,12 +116,12 @@ export class ChartService {
 
     this.chartColors = [];
     this.sampleData = [];
-    switch (chartSelector) {
+    switch (this.chartSelector) {
       case 'deaths':
 
         this.covidData.sort(compareDeaths);
 
-        for (let i = 0; i < 30 && this.covidData.length > i; i++) {
+        for (let i = 0; i < 10 && this.covidData.length > i; i++) {
           this.sampleData.push(this.covidData[i]);
         }
 
@@ -138,7 +139,7 @@ export class ChartService {
 
       case 'confirmed':
 
-      console.log(this.covidData);
+      
         this.covidData.sort(compareCasesConfirmed);
 
         for (let i = 0; i < 10 && this.covidData.length > i; i++) {
@@ -212,6 +213,21 @@ export class ChartService {
       borderWidth: 2,
     })
 
+  }
+
+  addSelectedCountry(country: Country){
+    let idx = this.covidData.indexOf(country);
+      
+      this.selectedCountries.push(this.covidData[idx]);
+  }
+
+  removeSelectedCountry(country : Country){
+    let idx = this.selectedCountries.indexOf(country);
+
+    if (idx >= 0) {
+      this.selectedCountries.splice(idx, 1);
+
+    }
   }
 }
 

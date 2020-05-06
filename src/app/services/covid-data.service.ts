@@ -11,4 +11,8 @@ export class CovidDataService {
   getCountriesData (){
     return this.httpClient.get("https://corona-api.com/countries");
   }
+
+  getCountryData(code : string){
+    return this.httpClient.get("https://corona-api.com/countries/" + code);
+  }
 }

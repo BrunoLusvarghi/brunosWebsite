@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Country } from '../charts.component';
+import { ChartService } from 'src/app/services/chart.service';
 
 @Component({
   selector: 'app-line-chart',
@@ -15,11 +16,9 @@ export class LineChartComponent implements OnInit {
   selectedCountries : Country[] = [];
 
 
-  public chartSelector = "confirmed";
-  public chartType: string = 'lineBar';
-  public chartDatasets: Array<any> = [];
-  public chartLabels: Array<any> = [];
-  public chartColors: Array<any> = [];
+  
+  public chartType: string = 'line';
+  
   public chartOptions: any = {
     responsive: true,
     scales: { xAxes: [{}], yAxes: [{}] },
@@ -34,13 +33,21 @@ export class LineChartComponent implements OnInit {
     }
   };
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private chartService : ChartService) { 
+    this.covidData = chartService.covidData;  
+    
+    this.chartOptions = chartService.chartOptions;
+    this.chartService.loadHorizontalBarChartData();
   }
 
 
+  ngOnInit(): void {
+    
+  }
 
+  getChartDatasets(){ return this.chartService.chartDatasets;}
+  getChartLabels(){return this.chartService.chartLabels;}
+  getChartColors() {return this.chartService.chartColors;}
 
 
 
@@ -49,3 +56,6 @@ export class LineChartComponent implements OnInit {
   public chartHovered(e: any): void { }
 
 }
+
+
+

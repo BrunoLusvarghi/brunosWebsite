@@ -18,9 +18,9 @@ export class MultiselectAutocompleteComponent implements OnInit {
 
   myControl;
   @ViewChild('input') input: ElementRef; 
-  // @Input() countries: Country[] = [];
+  
    countries: Country[];
-  // @Output() messageEvent = new EventEmitter<Country[]>();
+  
   selectedCountries: any = [];
 
   filteredOptions: Observable<Country>;
@@ -39,9 +39,6 @@ export class MultiselectAutocompleteComponent implements OnInit {
 
 
   ngOnInit() {
-    
-     
-  
  
   }
 
@@ -61,23 +58,18 @@ export class MultiselectAutocompleteComponent implements OnInit {
       let idx = this.countries.indexOf(country);
       
       this.selectedCountries.push(this.countries[idx]);
-    
+      this.chartService.addSelectedCountry(country);
 
       this.input.nativeElement.value = '';
 
-      this.chartService.setSelectedCountries(this.countries);
+      
 
   }
 
   remove(country : Country): void {
     
-    let idx = this.selectedCountries.indexOf(country);
-
-    if (idx >= 0) {
-      this.selectedCountries.splice(idx, 1);
-
-      this.chartService.setSelectedCountries(this.countries);
-    }
+    this.chartService.removeSelectedCountry(country);
+    
 
 
   }

@@ -26,12 +26,9 @@ export class HorizontalBarChartComponent implements OnInit {
 
   constructor(private chartService : ChartService) { 
     this.covidData = chartService.covidData;  
-    this.chartDatasets = chartService.chartDatasets;  
-    this.chartLabels = chartService.chartLabels;
-    this.chartColors = chartService.chartColors;
-    this.chartColors = chartService.chartColors;
+    
     this.chartOptions = chartService.chartOptions;
-    this.chartService.loadChartData('confirmed');
+    this.chartService.loadHorizontalBarChartData();
   }
 
   ngOnInit(): void {
@@ -39,25 +36,14 @@ export class HorizontalBarChartComponent implements OnInit {
 
   }
 
+  getChartDatasets(){ return this.chartService.chartDatasets;}
+  getChartLabels(){return this.chartService.chartLabels;}
+  getChartColors() {return this.chartService.chartColors;}
+
 
   public chartClicked(e: any): void { }
   public chartHovered(e: any): void { }
 
-}
-
-
-function compareCasesConfirmed(a, b) {
-  if (a.today.confirmed > b.today.confirmed) return -1;
-  if (b.today.confirmed > a.today.confirmed) return 1;
-
-  return 0;
-}
-
-function compareDeaths(a, b) {
-  if (a.today.deaths > b.today.deaths) return -1;
-  if (b.today.deaths > a.today.deaths) return 1;
-
-  return 0;
 }
 
 
