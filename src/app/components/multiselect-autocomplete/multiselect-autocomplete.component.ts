@@ -52,25 +52,21 @@ export class MultiselectAutocompleteComponent implements OnInit {
     return this.countries.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
+  getSelectedCountries(){return this.chartService.selectedCountries;}
+
   add(country : Country): void {
 
-
-      let idx = this.countries.indexOf(country);
-      
-      this.selectedCountries.push(this.countries[idx]);
       this.chartService.addSelectedCountry(country);
 
       this.input.nativeElement.value = '';
 
-      
 
   }
 
   remove(country : Country): void {
     
-    this.chartService.removeSelectedCountry(country);
+    this.chartService.removeSelectedCountry(country.code);
     
-
 
   }
 

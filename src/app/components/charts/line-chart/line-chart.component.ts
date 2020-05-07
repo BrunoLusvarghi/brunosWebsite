@@ -11,7 +11,7 @@ export class LineChartComponent implements OnInit {
 
   @Input() covidData: Country[];
   
-
+  JSON;
   sampleData = [];
   selectedCountries : Country[] = [];
 
@@ -34,10 +34,11 @@ export class LineChartComponent implements OnInit {
   };
 
   constructor(private chartService : ChartService) { 
-    this.covidData = chartService.covidData;  
+    this.JSON = JSON;
+    
     
     this.chartOptions = chartService.chartOptions;
-    this.chartService.loadHorizontalBarChartData();
+    
   }
 
 
