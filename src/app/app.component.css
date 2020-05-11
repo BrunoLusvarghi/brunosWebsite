@@ -41,3 +41,8 @@ background-repeat: no-repeat !important;
     z-index: 2;
     
 }
+
+:host ::ng-deep   .elementBorder{
+  border-bottom-style: solid !important;
+  border-bottom-color: rgb(0, 158, 174) !important; 
+}
