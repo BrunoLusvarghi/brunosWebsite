@@ -1,0 +1,21 @@
+<div  class="row justify-content-md-center" style="padding-top: 50px;">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        
+        <th scope="col">Skill</th>
+        <th scope="col">Knowledge</th>
+        <th scope="col">Years of Experience</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let s of skills">
+        
+        <td> {{s.skill}} </td>
+        <td> {{s.knowledge}} </td>
+        <td> {{s.yearsOfExperience}} </td>
+        
+      </tr>
+      </tbody>
+    </table>
+  </div>

@@ -11,9 +11,10 @@ export class ChartService {
 
   colors = [
     { r: 255, g: 0, b: 0 }, { r: 0, g: 234, b: 255 }, { r: 170, g: 0, b: 255 }, { r: 255, g: 127, b: 0 }, { r: 191, g: 255, b: 0 },
-    { r: 0, g: 149, b: 255 }, { r: 255, g: 0, b: 170 }, { r: 255, g: 212, b: 0 }, { r: 106, g: 255, b: 0 }, { r: 0, g: 64, b: 255 }, { r: 237, g: 185, b: 185 },
-    { r: 185, g: 215, b: 237 }, { r: 231, g: 233, b: 185 }, { r: 220, g: 185, b: 237 }, { r: 185, g: 237, b: 224 }, { r: 143, g: 35, b: 35 }, { r: 35, g: 98, b: 143 },
-    { r: 143, g: 106, b: 35 }, { r: 107, g: 35, b: 143 }, { r: 79, g: 143, b: 35 }
+    { r: 0, g: 149, b: 255 }, { r: 255, g: 0, b: 170 }, { r: 255, g: 212, b: 0 }, { r: 106, g: 255, b: 0 }, { r: 0, g: 64, b: 255 }
+    // , { r: 237, g: 185, b: 185 },
+    // { r: 185, g: 215, b: 237 }, { r: 231, g: 233, b: 185 }, { r: 220, g: 185, b: 237 }, { r: 185, g: 237, b: 224 }, { r: 143, g: 35, b: 35 }, { r: 35, g: 98, b: 143 },
+    // { r: 143, g: 106, b: 35 }, { r: 107, g: 35, b: 143 }, { r: 79, g: 143, b: 35 }
   ]
   colorIdx = 0;
 
@@ -34,6 +35,7 @@ export class ChartService {
 
   chartSelector: string = "confirmed";
   chartSelectorChange: Subject<string> = new Subject<string>();
+
   setChartType(chartType: string) {
     this.chartSelector = chartType;
 
@@ -191,13 +193,16 @@ export class ChartService {
     this.chartDatasets.push({ data: data, label: countryData.name });
 
 
-    this.chartLabels = countryData.timeline.slice(1, 10).reverse().map(x => x.date);
+    this.chartLabels = this.loadChartLabels(countryData);
 
 
     this.generateLineChartColors();
 
   }
 
+  loadChartLabels(countryData){
+    return countryData.timeline.slice(1, 10).reverse().map(x => x.date);
+  }
 
 
   generateHorizontalChartColors() {
@@ -205,17 +210,16 @@ export class ChartService {
 
     let colorsArray = [];
 
-    let idx = 1;
+
     this.chartLabels.forEach(element => {
-      let randomValue = 255 * (Math.random());
+    
 
 
 
       let color = this.getRgbColor();
       colorsArray.push('rgba(' + color.r + ',' + color.g + ',' + color.b + ', .7)');
 
-      if (idx < 3) idx++;
-      else idx = 1;
+ 
 
     });
 
@@ -232,8 +236,7 @@ export class ChartService {
 
   generateLineChartColors() {
 
-    if (this.chartColors.length == 0)
-      this.colorIdx = 0;
+    
     let color = this.getRgbColor();
 
     this.chartColors.push({
@@ -246,10 +249,13 @@ export class ChartService {
   }
 
   getRgbColor() {
+    
     let color = this.colors[this.colorIdx];
-    if (this.colorIdx == this.colors.length + 1)
+    if (this.colorIdx + 1 == this.colors.length)
       this.colorIdx = 0;
     else this.colorIdx++;
+
+    console.log(color);
     return color;
   }
 
@@ -286,11 +292,13 @@ export class ChartService {
     if (country != undefined) {
       let idx = this.selectedCountries.indexOf(country);
 
-      this.chartDatasets.splice(idx,1);
+      
+      this.chartDatasets.splice(idx,1)
       this.chartColors.splice(idx,1);
       this.selectedCountries.splice(idx,1);
-
-      console.log(this.chartDatasets);
+      this.chartLabels = this.loadChartLabels(country);
+      
+      
      
     }
 

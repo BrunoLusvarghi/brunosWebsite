@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { CovidDataService } from '../../services/covid-data.service';
-import { takeUntil, share } from 'rxjs/operators';
-import { async } from '@angular/core/testing';
 import { ChartService } from 'src/app/services/chart.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {CovidDialogComponent} from '../dialog/covid-dialog/covid-dialog.component';
 
 
 
@@ -16,28 +15,40 @@ import { ChartService } from 'src/app/services/chart.service';
 export class ChartsComponent {
 
 
+  panelOpenState = false;
   chartSelector: string;
   ngOnInit() {
 
   }
 
 
-  constructor(private chartService: ChartService) {
+  constructor(private chartService: ChartService,public dialog: MatDialog) {
 
+    const dialogRef = this.dialog.open(CovidDialogComponent, {
+      width: '500px' 
+    });
+
+    
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+      
+    // });
     this.chartSelector = this.chartService.chartSelector;
   }
 
-  changeChart(chartType) {
-    this.chartService.setChartType(chartType);
-  }
+  
 
-  getChartSelector() { return this.chartService.chartSelector; }
+  getChartSelector() { console.log(this.chartService.chartSelector);this.chartSelector = this.chartService.chartSelector;}
+  setChartSelector(chartType){this.chartService.setChartType(chartType);this.chartSelector = chartType};
 
   getIsLoaded(): boolean {
     return this.chartService.isLoaded;
   }
 
   getSelectedCountriesCount(){ return this.chartService.selectedCountries != null ? this.chartService.selectedCountries.length : 0;};
+
+ 
 
 }
 

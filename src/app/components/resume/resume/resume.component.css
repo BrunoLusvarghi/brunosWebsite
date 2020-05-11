@@ -1,0 +1,9 @@
+.divResumeIcons{
+    text-align: center; 
+    padding-top: 20px;
+    background-color:rgb(230, 230,230);
+}
+
+.selected{
+    background-color:rgb(200, 200,200);
+}

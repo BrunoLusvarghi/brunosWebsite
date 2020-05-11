@@ -53,8 +53,12 @@ export class LineChartComponent implements OnInit {
 
 
 
-  public chartClicked(e: any): void { }
-  public chartHovered(e: any): void { }
+  public chartClicked(e: any): void { 
+    
+  }
+  public chartHovered(e: any): void {
+    console.log(e);
+   }
 
 }
 

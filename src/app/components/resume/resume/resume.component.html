@@ -1,0 +1,49 @@
+
+
+
+
+  <div style="margin-bottom: 50px; border-color:rgb(0, 158, 174);border-width: 5px;  border-style:solid;border-radius: 20px;" class="row justify-content-md-center">
+    
+      
+  
+  
+    <div [ngClass]="{'selected': panelSelector == 'aboutMe'}" class="divResumeIcons col-md-3" >
+      <a style="color:inherit" href="javascript:;" (click)="selectPanel('aboutMe')">
+      <fa-icon size="5x" [icon]="faMugHot"></fa-icon>
+      <h1>About Me</h1>
+    </a>
+    </div>
+    <div [ngClass]="{'selected': panelSelector == 'career'}" class="divResumeIcons col-md-3" >
+      <a style="color:inherit" href="javascript:;" (click)="selectPanel('career')">
+      <fa-icon size="5x" [icon]="faBusinessTime"></fa-icon>
+      <h1>Career</h1>
+    </a>
+    </div>
+  
+
+    <div [ngClass]="{'selected': panelSelector == 'skills'}" class="divResumeIcons col-md-3" >
+      <a style="color:inherit" href="javascript:;" (click)="selectPanel('skills')">
+      <fa-icon  size="5x" [icon]="faLaptopCode"></fa-icon>
+      <h1>Skills</h1>
+    </a>
+    </div>
+  
+  
+    <div [ngClass]="{'selected': panelSelector == 'education'}" class="divResumeIcons col-md-3" >    
+      <a style="color:inherit" href="javascript:;" (click)="selectPanel('education')">
+      <fa-icon  size="5x" [icon]="faUniversity"></fa-icon>
+      <h1>Education</h1>
+    </a>
+    </div>
+  
+</div>
+
+ 
+
+
+<app-skills *ngIf="panelSelector == 'skills'"></app-skills>
+<app-career-history *ngIf="panelSelector == 'career'"></app-career-history>
+<app-education-history *ngIf="panelSelector == 'education'"></app-education-history>
+<app-about-me *ngIf="panelSelector == 'aboutMe'"></app-about-me>
+
+
