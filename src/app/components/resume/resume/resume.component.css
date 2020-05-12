@@ -7,3 +7,26 @@
 .selected{
     background-color:rgb(200, 200,200);
 }
+
+.resumeDiv{
+
+    margin-bottom: 80px !important;
+
+    
+}
+
+.firstResumeIcon{
+    
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.lastResumeIcon{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.divResumeIcons{
+    border-top: solid;
+    border-bottom: solid;
+}

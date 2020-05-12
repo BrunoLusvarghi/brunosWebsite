@@ -2,12 +2,12 @@
 
 
 
-  <div style="margin-bottom: 50px" class="row justify-content-md-center elementBorder">
+  <div  class="row justify-content-md-center resumeDiv ">
     
       
   
   
-    <div [ngClass]="{'selected': panelSelector == 'aboutMe'}" class="divResumeIcons col-md-3" >
+    <div [ngClass]="{'selected': panelSelector == 'aboutMe'}" class="divResumeIcons col-md-3 firstResumeIcon" >
       <a style="color:inherit" href="javascript:;" (click)="selectPanel('aboutMe')">
       <fa-icon size="5x" [icon]="faMugHot"></fa-icon>
       <h1>About Me</h1>
@@ -29,7 +29,7 @@
     </div>
   
   
-    <div [ngClass]="{'selected': panelSelector == 'education'}" class="divResumeIcons col-md-3" >    
+    <div [ngClass]="{'selected': panelSelector == 'education'}" class="divResumeIcons col-md-3 lastResumeIcon" >    
       <a style="color:inherit" href="javascript:;" (click)="selectPanel('education')">
       <fa-icon  size="5x" [icon]="faUniversity"></fa-icon>
       <h1>Education</h1>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import  { FormBuilder, Validators} from '@angular/forms';
-import {faFacebook, faLinkedin} from '@fortawesome/free-brands-svg-icons';
+import {faFacebookF, faLinkedinIn, faGithub} from '@fortawesome/free-brands-svg-icons';
 import { ContactService } from 'src/app/services/resume/contact.service';
 
 
@@ -12,8 +12,9 @@ import { ContactService } from 'src/app/services/resume/contact.service';
 export class ContactComponent implements OnInit {
   
   formContact;
-  faFacebook = faFacebook;
-  faLinkedin = faLinkedin;
+  faFacebook = faFacebookF;
+  faLinkedin = faLinkedinIn;
+  faGithub = faGithub;
   messageSent = false;
   
   constructor(private fb: FormBuilder,private contactService : ContactService) {

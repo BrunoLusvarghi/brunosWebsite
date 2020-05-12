@@ -13,7 +13,8 @@ export class ContactService {
 
   /** POST: add a new hero to the database */
   sendEmail (email: any): Observable<any> {
-  return this.http.post<any>("http://18.220.216.92:3000", email);
+   return this.http.post<any>("http://18.220.216.92:3000", email);
+  
   }
 }
  
