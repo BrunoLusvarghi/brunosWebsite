@@ -10,7 +10,8 @@ export class ValidInputDirective{
   constructor(private renderer: Renderer2,private el: ElementRef) { }
 
   @HostListener('change') ngOnChanges() {
-   console.log(this.appValidInput);
+   
+    //Change layout of element based on valid status of input
     if (this.appValidInput){
       this.renderer.removeClass(this.el.nativeElement,"invalidInput"); 
     }

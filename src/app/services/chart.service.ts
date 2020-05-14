@@ -9,13 +9,12 @@ import { count } from 'rxjs/operators';
 })
 export class ChartService {
 
+  //Color pallet with distinct color to generate chart colors
   colors = [
     { r: 255, g: 0, b: 0 }, { r: 0, g: 234, b: 255 }, { r: 170, g: 0, b: 255 }, { r: 255, g: 127, b: 0 }, { r: 191, g: 255, b: 0 },
     { r: 0, g: 149, b: 255 }, { r: 255, g: 0, b: 170 }, { r: 255, g: 212, b: 0 }, { r: 106, g: 255, b: 0 }, { r: 0, g: 64, b: 255 }
-    // , { r: 237, g: 185, b: 185 },
-    // { r: 185, g: 215, b: 237 }, { r: 231, g: 233, b: 185 }, { r: 220, g: 185, b: 237 }, { r: 185, g: 237, b: 224 }, { r: 143, g: 35, b: 35 }, { r: 35, g: 98, b: 143 },
-    // { r: 143, g: 106, b: 35 }, { r: 107, g: 35, b: 143 }, { r: 79, g: 143, b: 35 }
   ]
+  //Idx of which color will be used to draw a country data
   colorIdx = 0;
 
   covidData: any;
@@ -24,15 +23,18 @@ export class ChartService {
   sampleDataChange: Subject<any> = new Subject<any>();
 
 
+  //Update the list of selected countries
   selectedCountries: any = [];
   selectedCountriesChange: Subject<any> = new Subject<any>();
   setSelectedCountries(countriesSelected: any) {
     this.selectedCountries = countriesSelected;
   }
 
+
   isLoaded: boolean;
   isLoadedChange: Subject<boolean> = new Subject<boolean>();
 
+  //Selects which info type will be shown
   chartSelector: string = "confirmed";
   chartSelectorChange: Subject<string> = new Subject<string>();
 
@@ -61,6 +63,7 @@ export class ChartService {
   chartColors: Array<any> = [];
   chartColorsChange: Subject<Array<any>> = new Subject<Array<any>>();
 
+  //Sets chart configuration options
   chartOptions: any = {
     responsive: true,
     scales: { xAxes: [{}], yAxes: [{}] },
@@ -78,9 +81,10 @@ export class ChartService {
   constructor(private covidDataService: CovidDataService) {
 
 
-
-
-
+    /*
+      All components that uses dependency injection to reference Chart Service, have access to the below variables and any changes
+      made to it
+    */
     this.covidDataChange.subscribe((value) => {
       this.covidData = value
     });
@@ -129,6 +133,7 @@ export class ChartService {
   }
 
 
+  //Loads the Horizontal Bar Chart 
   loadHorizontalBarChartData() {
 
     this.chartDatasets = [];
@@ -137,62 +142,69 @@ export class ChartService {
 
     this.chartColors = [];
     this.sampleData = [];
+
+
     switch (this.chartSelector) {
+
+      //Loads Deaths quantity information
       case 'deaths':
 
+
+        //Sorts all data based on number of deaths      
         this.covidData.sort(compareDeaths);
 
         for (let i = 0; i < 10 && this.covidData.length > i; i++) {
           this.sampleData.push(this.covidData[i]);
         }
 
+        //Loads chart labels
         this.chartDatasets.push({
           data: this.sampleData.map(x => x.today.deaths), label: 'Deaths (last 24 hours)'
         })
 
-
+        //Loads chart labels
         this.chartLabels = this.sampleData.map(x => x.name);
-
-
 
 
         break;
 
       case 'confirmed':
+        //Loads COnfirmed cases quantity information
 
-
+        //Sorts all data based on confirmed cases
         this.covidData.sort(compareCasesConfirmed);
 
         for (let i = 0; i < 10 && this.covidData.length > i; i++) {
           this.sampleData.push(this.covidData[i]);
         }
 
+        //Loads data to chart
         this.chartDatasets.push({
           data: this.sampleData.map(x => x.today.confirmed), label: 'New cases (last 24 hours)'
         });
 
-
+        //Loads chart labels
         this.chartLabels = this.sampleData.map(x => x.name);
 
 
 
     }
+    
     this.generateHorizontalChartColors();
   }
 
 
-
+//Loads the Horizontal Bar Chart 
   loadLineChartData(countryData) {
 
 
-
-
-
+    //Gets data from a country 10 last days
     let data = countryData.timeline.slice(1, 10).reverse().map(x => (this.chartSelector == 'deaths') ? x.deaths : x.confirmed);
 
+    //Loads data to chart
     this.chartDatasets.push({ data: data, label: countryData.name });
 
-
+    //Loads chart labels  
     this.chartLabels = this.loadChartLabels(countryData);
 
 
@@ -200,26 +212,21 @@ export class ChartService {
 
   }
 
-  loadChartLabels(countryData){
+  loadChartLabels(countryData) {
     return countryData.timeline.slice(1, 10).reverse().map(x => x.date);
   }
 
 
+  //Generate the colors presented in the Horizontal Chart 
   generateHorizontalChartColors() {
-
 
     let colorsArray = [];
 
-
     this.chartLabels.forEach(element => {
-    
-
-
 
       let color = this.getRgbColor();
       colorsArray.push('rgba(' + color.r + ',' + color.g + ',' + color.b + ', .7)');
 
- 
 
     });
 
@@ -233,10 +240,10 @@ export class ChartService {
   }
 
 
-
+//Generate the colors presented in the Horizontal Chart 
   generateLineChartColors() {
 
-    
+
     let color = this.getRgbColor();
 
     this.chartColors.push({
@@ -248,8 +255,9 @@ export class ChartService {
 
   }
 
+  //Selects which color will be used based on the colorIdx variable
   getRgbColor() {
-    
+
     let color = this.colors[this.colorIdx];
     if (this.colorIdx + 1 == this.colors.length)
       this.colorIdx = 0;
@@ -259,6 +267,7 @@ export class ChartService {
     return color;
   }
 
+  //Adds the selected country to the chart
   addSelectedCountry(country: Country) {
 
     this.covidDataService.getCountryData(country.code).subscribe((res: any) => {
@@ -276,14 +285,14 @@ export class ChartService {
       this.selectedCountries.push(countryData);
 
 
-
       this.loadLineChartData(countryData);
     });
 
   }
 
+  //Removes country from chart
   removeSelectedCountry(countryCode: string) {
-    
+
     let country = this.selectedCountries.find(obj => {
       return obj.code == countryCode;
     })
@@ -292,22 +301,18 @@ export class ChartService {
     if (country != undefined) {
       let idx = this.selectedCountries.indexOf(country);
 
-      
-      this.chartDatasets.splice(idx,1)
-      this.chartColors.splice(idx,1);
-      this.selectedCountries.splice(idx,1);
+      this.chartDatasets.splice(idx, 1)
+      this.chartColors.splice(idx, 1);
+      this.selectedCountries.splice(idx, 1);
       this.chartLabels = this.loadChartLabels(country);
-      
-      
-     
+
     }
-
-
 
   }
 }
 
 
+//Compare countries by quantity of cases confirmed today
 function compareCasesConfirmed(a, b) {
   if (a.today.confirmed > b.today.confirmed) return -1;
   if (b.today.confirmed > a.today.confirmed) return 1;
@@ -315,6 +320,7 @@ function compareCasesConfirmed(a, b) {
   return 0;
 }
 
+//Compare countries by quantity of deaths today
 function compareDeaths(a, b) {
   if (a.today.deaths > b.today.deaths) return -1;
   if (b.today.deaths > a.today.deaths) return 1;
@@ -322,6 +328,7 @@ function compareDeaths(a, b) {
   return 0;
 }
 
+//Compare dates 
 function compareTimelineDates(a, b) {
   if (b.date > b.date) return -1;
   if (a.date > a.date) return 1;

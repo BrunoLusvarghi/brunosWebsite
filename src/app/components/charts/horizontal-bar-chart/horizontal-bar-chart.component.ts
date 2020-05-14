@@ -25,7 +25,6 @@ export class HorizontalBarChartComponent implements OnInit {
  
 
   constructor(private chartService : ChartService) { 
-    this.covidData = chartService.covidData;  
     
     this.chartOptions = chartService.chartOptions;
     this.chartService.loadHorizontalBarChartData();
@@ -36,8 +35,13 @@ export class HorizontalBarChartComponent implements OnInit {
 
   }
 
+  //Returns the chart data from Chart Service; Values is updated when a change is identified
   getChartDatasets(){ return this.chartService.chartDatasets;}
+
+  //Returns the chart labels from Chart Service; Values is updated when a change is identified
   getChartLabels(){return this.chartService.chartLabels;}
+
+  //Returns the chart colors from Chart Service; Values is updated when a change is identified
   getChartColors() {return this.chartService.chartColors;}
 
 

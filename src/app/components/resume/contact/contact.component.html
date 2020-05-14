@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-md-6 ">
         <form [formGroup]="formContact" class="col-md-12 " (ngSubmit)="onSubmit()">
@@ -46,21 +47,29 @@
         </form>
     </div>
 
-    <div class="col-md-5  vl" style="display: flex;flex-direction: column;justify-content: space-evenly;" >
-        
-            
-        <a href="https://www.linkedin.com/in/bruno-fernandes-1183978b/?locale=en_US">
-            <fa-icon style="color:rgb(14,118,168);" size="5x" [icon]="faLinkedin"></fa-icon>
-        </a>
-        <a href="https://github.com/BrunoLusvarghi">
-            <fa-icon style="color:black;" size="5x" [icon]="faGithub"></fa-icon>
-        </a>
-            
+
+
+
+    <div class="col-md-5  vl">
+
+        <h2>Social Medias:</h2>
+        <div style="display: flex;flex-direction: row;justify-content: space-evenly;">
+
+
+
+
+            <a href="https://www.linkedin.com/in/bruno-fernandes-1183978b/?locale=en_US">
+                <fa-icon style="color:rgb(14,118,168);" size="4x" [icon]="faLinkedin"></fa-icon>
+            </a>
+            <a href="https://github.com/BrunoLusvarghi">
+                <fa-icon style="color:black;" size="4x" [icon]="faGithub"></fa-icon>
+            </a>
+
 
             <a href="https://www.facebook.com/bruno.lusvarghifernandes">
-                <fa-icon style="color: rgb(59,89,152)" size="5x" [icon]="faFacebook"></fa-icon>
+                <fa-icon style="color: rgb(59,89,152)" size="4x" [icon]="faFacebook"></fa-icon>
             </a>
-            
-        
+
+        </div>
     </div>
 </div>
