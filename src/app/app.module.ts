@@ -33,6 +33,8 @@ import {NgbModule, NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
 import {HomeComponent} from './components/home/home.component';
 import {ResumeComponent} from './components/resume/resume/resume.component';
 import { CovidComponent } from './components/covid/covid.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import { CovidComponent } from './components/covid/covid.component';
     FontAwesomeModule,
     NgbModule,
     NgbAccordionModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [ChartsComponent],
   providers: [EducationHistoryService,CareerHistoryService,ChartService,SkillsService],

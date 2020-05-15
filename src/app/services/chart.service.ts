@@ -2,12 +2,33 @@ import { Injectable, ɵConsole } from '@angular/core';
 import { CovidDataService } from './covid-data.service';
 import { Country } from '../components/charts/charts.component';
 import { Subject } from 'rxjs';
-import { count } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChartService {
+
+  date: Date = new Date();
+  dateChange: Subject<Date> = new Subject<Date>();
+
+  setDate(dt: Date) {
+    this.date = dt;
+    if (this.selectedCountries.length == 0)
+      this.loadHorizontalBarChartData();
+    else {
+      this.chartDatasets = [];
+      this.chartColors = [];
+      this.chartLabels = [];
+      for (let i = 0; i < this.selectedCountries.length; i++)
+        this.loadLineChartData(this.selectedCountries[i]);
+    }
+  }
+  getDate() { return this.date; }
+  getStringDate() { return (this.date == null || this.date == undefined) ? null : this.date.toLocaleDateString('en-Us') }
+
+
+  dataAvailable = true;
 
   //Color pallet with distinct color to generate chart colors
   colors = [
@@ -80,6 +101,7 @@ export class ChartService {
 
   constructor(private covidDataService: CovidDataService) {
 
+    this.date.setHours(0, 0, 0, 0);
 
     /*
       All components that uses dependency injection to reference Chart Service, have access to the below variables and any changes
@@ -124,7 +146,12 @@ export class ChartService {
       this.chartColors = value
     });
 
-    this.covidDataService.getCountriesData().subscribe((res: any) => {
+    this.dateChange.subscribe((value) => {
+      this.date = value
+    });
+
+    //Gets covid Data with date history (timeline)
+    this.covidDataService.getCountriesDataWithTimeline().subscribe((res: any) => {
       this.covidData = res.data;
       this.isLoaded = true;
 
@@ -136,13 +163,18 @@ export class ChartService {
   //Loads the Horizontal Bar Chart 
   loadHorizontalBarChartData() {
 
+    this.dataAvailable = true;
+
     this.chartDatasets = [];
 
     this.chartLabels = [];
 
     this.chartColors = [];
     this.sampleData = [];
+    
 
+
+    let countriesAdded = 0;
 
     switch (this.chartSelector) {
 
@@ -150,54 +182,115 @@ export class ChartService {
       case 'deaths':
 
 
-        //Sorts all data based on number of deaths      
-        this.covidData.sort(compareDeaths);
+        /*
+          Sorts all data based on number of deaths yesterday    
+          Yesterday date is used as a more trusthworthy situation about a country,
+          since today's information is still being counted and can show incosistencies
+        */
+        this.covidData.sort(compareYesterdayDeaths);
 
-        for (let i = 0; i < 10 && this.covidData.length > i; i++) {
+
+        //Get data from the countries with more deaths on the selected date
+        for (let i = 0; countriesAdded <= 10 && this.covidData.length > i; i++) {
+
+
+          console.log(this.date);
+          let countryTimeLine = this.covidData[i].timeline.find(o => o.date != null
+            && o.date === this.date.toISOString().slice(0, 10));
+
+
+          //if a country timeline doesn't show information from that specific date, the country is not shown in that date chart
+          if (countryTimeLine == undefined || countryTimeLine == null) {
+            continue;
+          }
+
+          let timelineIdx = this.covidData[i].timeline.indexOf(countryTimeLine);
+
+          //get date timeline idx for future references
+          this.covidData[i].timelineIdx = timelineIdx;
+
           this.sampleData.push(this.covidData[i]);
+
+          countriesAdded++;
         }
 
+        //Sort the 10 countries selected
+        this.sampleData.sort(compareTimelineNewDeaths);
+
+        
+        if (this.sampleData.length == 0) {
+          this.dataAvailable = false;
+        }
         //Loads chart labels
         this.chartDatasets.push({
-          data: this.sampleData.map(x => x.today.deaths), label: 'Deaths (last 24 hours)'
+          data: this.sampleData.map(x => x.timeline[x.timelineIdx].new_deaths), label: 'Deaths'
         })
 
         //Loads chart labels
         this.chartLabels = this.sampleData.map(x => x.name);
 
-
         break;
 
       case 'confirmed':
-        //Loads COnfirmed cases quantity information
 
-        //Sorts all data based on confirmed cases
-        this.covidData.sort(compareCasesConfirmed);
+        /*
+          Sorts all data based on number of confirmed yesterday    
+          Yesterday date is used as a more trusthworthy situation about a country,
+          since today's information is still being counted and can show incosistencies
+        */
+        this.covidData.sort(compareYesterdayConfirmedCases);
 
-        for (let i = 0; i < 10 && this.covidData.length > i; i++) {
+
+        //Get data from the countries with more deaths on the selected date
+        for (let i = 0; countriesAdded <= 10 && this.covidData.length > i; i++) {
+
+
+          console.log(this.date);
+          let countryTimeLine = this.covidData[i].timeline.find(o => o.date != null
+            && o.date === this.date.toISOString().slice(0, 10));
+
+
+
+          if (countryTimeLine == undefined || countryTimeLine == null) {
+            continue;
+          }
+
+          let timelineIdx = this.covidData[i].timeline.indexOf(countryTimeLine);
+
+          this.covidData[i].timelineIdx = timelineIdx;
+
           this.sampleData.push(this.covidData[i]);
+
+          countriesAdded++;
         }
 
-        //Loads data to chart
+        this.sampleData.sort(compareTimelineNewConfirmed);
+
+
+        if (this.sampleData.length == 0) {
+          this.dataAvailable = false;
+        }
+        //Loads chart labels
         this.chartDatasets.push({
-          data: this.sampleData.map(x => x.today.confirmed), label: 'New cases (last 24 hours)'
-        });
+          data: this.sampleData.map(x => x.timeline[x.timelineIdx].new_confirmed), label: 'Confirmed'
+        })
 
         //Loads chart labels
         this.chartLabels = this.sampleData.map(x => x.name);
 
+        break;
 
 
     }
-    
+
     this.generateHorizontalChartColors();
   }
 
 
-//Loads the Horizontal Bar Chart 
+  //Loads the Horizontal Bar Chart 
   loadLineChartData(countryData) {
 
-
+    this.dataAvailable = true;
     //Gets data from a country 10 last days
     let data = countryData.timeline.slice(1, 10).reverse().map(x => (this.chartSelector == 'deaths') ? x.deaths : x.confirmed);
 
@@ -240,7 +333,7 @@ export class ChartService {
   }
 
 
-//Generate the colors presented in the Horizontal Chart 
+  //Generate the colors presented in the Horizontal Chart 
   generateLineChartColors() {
 
 
@@ -263,7 +356,7 @@ export class ChartService {
       this.colorIdx = 0;
     else this.colorIdx++;
 
-    console.log(color);
+
     return color;
   }
 
@@ -328,10 +421,86 @@ function compareDeaths(a, b) {
   return 0;
 }
 
+//Compare countries by quantity of deaths today
+function compareTimelineNewDeaths(a, b) {
+  if (a.timeline[a.timelineIdx].new_deaths > b.timeline[b.timelineIdx].new_deaths) return -1;
+  if (b.timeline[b.timelineIdx].new_deaths > a.timeline[a.timelineIdx].new_deaths) return 1;
+
+  return 0;
+}
+
+//Compare countries by quantity of deaths today
+function compareTimelineNewConfirmed(a, b) {
+  if (a.timeline[a.timelineIdx].new_confirmed > b.timeline[b.timelineIdx].new_confirmed) return -1;
+  if (b.timeline[b.timelineIdx].new_confirmed > a.timeline[a.timelineIdx].new_confirmed) return 1;
+
+  return 0;
+}
+
 //Compare dates 
 function compareTimelineDates(a, b) {
   if (b.date > b.date) return -1;
   if (a.date > a.date) return 1;
+
+  return 0;
+}
+
+
+/*
+Compare yesterday cases to sort data by currently most affected countries
+This removes errors from today's date changes and reduces the complexity of sorting algorithm
+*/
+
+function compareYesterdayConfirmedCases(a, b) {
+
+
+  if (a.timeline.length < 2) {
+    if (b.timeline.length < 2)
+      return 0;
+    else
+      return 1;
+  }
+
+  `  `
+
+  if (b.timeline.length < 2) {
+    return -1;
+  }
+
+
+
+
+  if (b.timeline[1].new_confirmed > a.timeline[1].new_confirmed) return 1;
+  if (a.timeline[1].new_confirmed > b.timeline[1].new_confirmed) return -1;
+
+  return 0;
+}
+
+
+/*
+Compare yesterday cases to sort data by currently most affected countries
+This removes errors from today's date changes and reduces the complexity of sorting algorithm
+*/
+
+function compareYesterdayDeaths(a, b) {
+
+
+  if (a.timeline.length < 2) {
+    if (b.timeline.length < 2)
+      return 0;
+    else
+      return 1;
+  }
+
+  `  `
+
+  if (b.timeline.length < 2) {
+    return -1;
+  }
+
+
+  if (b.timeline[1].new_deaths > a.timeline[1].new_deaths) return 1;
+  if (a.timeline[1].new_deaths > b.timeline[1].new_deaths) return -1;
 
   return 0;
 }

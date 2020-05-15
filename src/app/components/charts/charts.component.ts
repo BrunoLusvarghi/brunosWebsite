@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ChartService } from 'src/app/services/chart.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {CovidDialogComponent} from '../dialog/covid-dialog/covid-dialog.component';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 
 
@@ -18,6 +19,8 @@ export class ChartsComponent {
   panelOpenState = false;
 
   chartSelector: string;
+
+  date : Date;
 
   ngOnInit() {
 
@@ -50,7 +53,14 @@ export class ChartsComponent {
   //Checks if there is any country selected to change the chart type 
   getSelectedCountriesCount(){ return this.chartService.selectedCountries != null ? this.chartService.selectedCountries.length : 0;};
 
+
+  getDate() { return this.chartService.getDate()};
+  getStringDate(){return this.chartService.getStringDate()}
+  setDate(){this.chartService.setDate(this.date);}
  
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.chartService.setDate(event.value);
+  }
 
 }
 

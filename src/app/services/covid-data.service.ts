@@ -13,6 +13,12 @@ export class CovidDataService {
     return this.httpClient.get("https://corona-api.com/countries");
   }
 
+  //Returns all countries data in current the date
+  getCountriesDataWithTimeline (){
+    return this.httpClient.get("https://corona-api.com/countries?include=timeline");
+    
+  }
+
   //Returns all data from one country (Search by country code)
   getCountryData(code : string){
     return this.httpClient.get("https://corona-api.com/countries/" + code);
