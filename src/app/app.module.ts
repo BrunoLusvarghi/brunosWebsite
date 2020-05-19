@@ -35,6 +35,8 @@ import {ResumeComponent} from './components/resume/resume/resume.component';
 import { CovidComponent } from './components/covid/covid.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { JwtComponent } from './components/portfolio/jwt/jwt.component';
+import {AutosizeModule} from 'ngx-autosize';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     AboutMeComponent,
     HomeComponent,
     ResumeComponent,
-    CovidComponent
+    CovidComponent,
+    JwtComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     NgbModule,
     NgbAccordionModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    AutosizeModule
   ],
   exports: [ChartsComponent],
   providers: [EducationHistoryService,CareerHistoryService,ChartService,SkillsService],

@@ -43,6 +43,18 @@ background-repeat: no-repeat !important;
     border-bottom-color: rgb(0, 158, 174) !important;
 }
 
+:host ::ng-deep h1 {
+    font-weight: 550;
+}
+
+:host ::ng-deep h2 {
+    font-weight: 450 !important;
+}
+
+:host ::ng-deep h3 {
+    font-weight: 380 !important;
+}
+
 :host ::ng-deep h2 {
     font-weight: 400;
     font-size: large;

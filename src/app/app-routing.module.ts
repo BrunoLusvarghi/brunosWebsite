@@ -5,6 +5,7 @@ import {ResumeComponent} from './components/resume/resume/resume.component';
 import {ContactComponent} from './components/resume/contact/contact.component';
 import {ChartsComponent} from  './components/charts/charts.component';
 import { CovidComponent } from './components/covid/covid.component';
+import { JwtComponent } from './components/portfolio/jwt/jwt.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
 {
   component : ContactComponent,
   path : 'contact'
+},
+{
+  component : JwtComponent,
+  path : 'portfolio/jwt'
 }];
 
 @NgModule({

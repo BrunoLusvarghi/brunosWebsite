@@ -53,9 +53,6 @@
             </mat-expansion-panel>
 
         </mat-accordion>
-        <!-- <div class="row col-md-12" style="margin-top: 10px;margin-bottom:30px">
-    <h1>Filters:</h1>
-    </div> -->
 
     </div>
 
@@ -66,22 +63,19 @@
 
     </div>
     <div class="row ">
-        <!-- <div class="col-md-2 " style="padding-top: 10px;border-style: solid; border-color: lightgrey; border-radius: 2px; ">
 
-      <button [disabled]="getChartSelector()=='confirmed' " type="button " class="btn btn-success btn-lg btn-block "
-        (click)="changeChart( 'confirmed') ">Confirmed </button>
-
-
-      <button [disabled]="getChartSelector()=='deaths' " type="button " class="btn btn-success btn-lg btn-block "
-        (click)="changeChart( 'deaths') ">Deaths</button>
-
-    </div> -->
-        <div *ngIf="getIsLoaded() " class="col-md-11 ">
+        <div *ngIf="getIsLoaded() " class="col-md-11">
 
             <app-horizontal-bar-chart *ngIf="getSelectedCountriesCount()==0 "></app-horizontal-bar-chart>
 
             <app-line-chart *ngIf="getSelectedCountriesCount()> 0"></app-line-chart>
 
+        </div>
+
+        <div class="row col-md-12" style="display: flex; justify-content:space-evenly;">
+            <p style="text-align: center;">Data is retrieved from the public API https://corona-api.com/ <br> Data shown in the charts are based on each country official numbers and might show some inconsistencies.
+
+            </p>
         </div>
 
 

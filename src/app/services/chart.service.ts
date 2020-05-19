@@ -292,6 +292,7 @@ export class ChartService {
 
     this.dataAvailable = true;
     //Gets data from a country 10 last days
+    console.log(countryData.timeline);
     let data = countryData.timeline.slice(1, 10).reverse().map(x => (this.chartSelector == 'deaths') ? x.deaths : x.confirmed);
 
     //Loads data to chart
@@ -499,8 +500,8 @@ function compareYesterdayDeaths(a, b) {
   }
 
 
-  if (b.timeline[1].new_deaths > a.timeline[1].new_deaths) return 1;
-  if (a.timeline[1].new_deaths > b.timeline[1].new_deaths) return -1;
+  if (b.timeline[0].new_deaths > a.timeline[0].new_deaths) return 1;
+  if (a.timeline[0].new_deaths > b.timeline[0].new_deaths) return -1;
 
   return 0;
 }
