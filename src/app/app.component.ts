@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import {Router, NavigationEnd} from '@angular/router'; // import Router and NavigationEnd
 
+  // declare ga as a function to set and sent the events
+ declare let ga: Function;
 
 
 @Component({
@@ -9,6 +12,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'myWebsite';
+
+  constructor(public router: Router) {
+
+    // subscribe to router events and send page views to Google Analytics
+    this.router.events.subscribe(event => {
+
+      if (event instanceof NavigationEnd) {
+        ga('set', 'page', event.urlAfterRedirects);
+        ga('send', 'pageview');
+
+      }
+
+    });
+  }
  
 }
 
