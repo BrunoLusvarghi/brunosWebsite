@@ -1,0 +1,61 @@
+<form [formGroup]="appForm">
+    <div class="row">
+
+        <div class="form-group  col-md-4">
+            <label class="col-md-6 label-control">Last Name *</label>
+            <div class="col-md-12">
+                <input [appValidInput]="appForm.controls['lastName']" class="form-control" formControlName="lastName">
+            </div>
+        </div>
+
+        <div class="form-group  col-md-4">
+            <label class="col-md-6 label-control">First Name *</label>
+            <div class="col-md-12">
+                <input [appValidInput]="appForm.controls['firstName']" class="form-control" formControlName="firstName">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group  col-md-4">
+            <label class="col-md-6 label-control">Email *</label>
+            <div class="col-md-12">
+                <input [appValidInput]="appForm.controls['email']" type="email" class="form-control" formControlName="email">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group  col-md-4">
+            <label class="col-md-4 label-control">Date Of Birth</label>
+            <div class="col-md-6">
+                <input [appValidInput]="appForm.controls['dateOfBirth']" class="form-control" formControlName="dateOfBirth ">
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="form-group col-md-4 ">
+
+            <input type="checkbox" formControlName="optInCB "> Receive E-mails and News
+
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="form-group col-md-4 ">
+
+            <input type="radio " value="Male " formControlName="optInCB "> Male
+            <input type="radio " value="Female " formControlName="optInCB "> Female
+            <input type="radio " value="noAnswer " formControlName="optInCB "> Prefer not to answer
+
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+
+</form>

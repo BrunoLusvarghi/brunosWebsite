@@ -1,49 +1,60 @@
+<div class="fullPageNavbar">
 
 
-
-
-  <div  class="row justify-content-md-center resumeDiv ">
-    
-      
-  
-  
-    <div [ngClass]="{'selected': panelSelector == 'aboutMe'}" class="divResumeIcons col-md-3 firstResumeIcon" >
-      <a style="color:inherit" href="javascript:;" (click)="selectPanel('aboutMe')">
-      <fa-icon size="5x" [icon]="faMugHot"></fa-icon>
-      <h1>About Me</h1>
-    </a>
+    <div style="background-color: #f6f5ae" class="divResumeIcons firstResumeIcon">
+        <a style="color:inherit" href="javascript:;  " (click)="scroll(aboutMe)">
+            <fa-icon size="2x" [icon]="faMugHot"></fa-icon>
+            About Me
+        </a>
     </div>
-    <div [ngClass]="{'selected': panelSelector == 'career'}" class="divResumeIcons col-md-3" >
-      <a style="color:inherit" href="javascript:;" (click)="selectPanel('career')">
-      <fa-icon size="5x" [icon]="faBusinessTime"></fa-icon>
-      <h1>Career</h1>
-    </a>
-    </div>
-  
 
-    <div [ngClass]="{'selected': panelSelector == 'skills'}" class="divResumeIcons col-md-3" >
-      <a style="color:inherit" href="javascript:;" (click)="selectPanel('skills')">
-      <fa-icon  size="5x" [icon]="faLaptopCode"></fa-icon>
-      <h1>Skills</h1>
-    </a>
+    <div class="divResumeIcons" style="background-color: #9ad5b3">
+        <a style="color:inherit" href="javascript:;" (click)="scroll(portfolio)">
+            <fa-icon size="2x" [icon]="faLaptopCode"></fa-icon>
+            Portfolio
+        </a>
     </div>
-  
-  
-    <div [ngClass]="{'selected': panelSelector == 'education'}" class="divResumeIcons col-md-3 lastResumeIcon" >    
-      <a style="color:inherit" href="javascript:;" (click)="selectPanel('education')">
-      <fa-icon  size="5x" [icon]="faUniversity"></fa-icon>
-      <h1>Education</h1>
-    </a>
+
+
+    <div style="background-color:#ffd9ce" class="divResumeIcons">
+        <a style="color:inherit" href="javascript:;" (click)="scroll(career)">
+            <fa-icon size="2x" [icon]="faBusinessTime"></fa-icon>
+            Career
+        </a>
     </div>
-  
+
+
+    <div style="background-color:#90CCF4" class="divResumeIcons  lastResumeIcon">
+        <a style="color:inherit" href="javascript:;" (click)="scroll(education)">
+            <fa-icon size="2x" [icon]="faUniversity"></fa-icon>
+            Education
+        </a>
+    </div>
+
+
 </div>
 
- 
 
+<div class="resumeSection" #aboutMe style="min-height:100vh;background-color: #f6f5ae;">
+    <div class="verticalAlign">
+        <app-about-me class="resumeComponents"></app-about-me>
+    </div>
+</div>
+<div class="resumeSection" #portfolio style="min-height:100vh;background-color: #9ad5b3;">
+    <div class="verticalAlign">
+        <app-portfolio class="resumeComponents"></app-portfolio>
+    </div>
 
-<app-skills *ngIf="panelSelector == 'skills'"></app-skills>
-<app-career-history *ngIf="panelSelector == 'career'"></app-career-history>
-<app-education-history *ngIf="panelSelector == 'education'"></app-education-history>
-<app-about-me *ngIf="panelSelector == 'aboutMe'"></app-about-me>
+</div>
+<div class="resumeSection" #career style="min-height:100vh;background-color: #ffd9ce;">
+    <div class="verticalAlign">
+        <app-career-history class="resumeComponents"></app-career-history>
+    </div>
+</div>
+<div class="resumeSection" #education style="min-height:100vh;background-color: #90CCF4;">
 
+    <div class="verticalAlign">
+        <app-education-history class="resumeComponents"></app-education-history>
+    </div>
 
+</div>

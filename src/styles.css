@@ -1,12 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-html,
-body {
-    height: 100%;
+@import '~fullpage.js/dist/fullpage.min.css';
+@font-face {
+    font-family: vollkorn;
+    src: url(assets/fonts/Vollkorn-VariableFont_wght.ttf) format("opentype");
 }
 
-body {
+@font-face {
+    font-family: proza;
+    src: url(assets/fonts/Proza-Regular.otf) format("opentype");
+}
+
+
+/* body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+} */

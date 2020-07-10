@@ -1,0 +1,19 @@
+.portfolioDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.projectCard {
+    border: solid 1px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+strong {
+    white-space: pre-wrap;
+}
+
+.mat-card {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,34 @@
+<div style="position: relative;width: 800px;height: 50vh;">
+    <h1 mat-dialog-title>{{project.projectName}}
+        <span *ngIf="project.subtitle !== undefined && project.subtitle !== null"></span>({{project.subtitle}})
+    </h1>
+    <div mat-dialog-content>
+        <div class="row">
+            <label><strong>Description:</strong></label>
+            <p>{{project.description}}</p>
+        </div>
+        <div class="row">
+            <label><strong>Technologies:</strong></label>
+            <span>
+                <mat-chip-list aria-label="Tech selection">
+                    <mat-chip style="margin-left: 5px ;" *ngFor="let tech of project.technologies">{{tech}}</mat-chip>
+                </mat-chip-list>
+            </span>
+        </div>
+        <div class="row">
+            <label><strong>Url:</strong></label><a [href]="project.url">{{project.url}}</a>
+        </div>
+        <div class="row">
+            <label><strong>Repository:</strong></label><a [href]="project.repository">{{project.repository}}</a>
+        </div>
+
+
+
+    </div>
+    <div mat-dialog-actions style="position: absolute;bottom: 0;float: right;">
+        <button class="btn btn-secondary" mat-button mat-dialog-close>Close</button>
+
+
+    </div>
+
+</div>

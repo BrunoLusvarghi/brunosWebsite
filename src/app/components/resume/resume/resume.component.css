@@ -1,32 +1,57 @@
-.divResumeIcons{
-    text-align: center; 
-    padding-top: 20px;
-    background-color:rgb(230, 230,230);
+.selected {
+    color: red;
 }
 
-.selected{
-    background-color:rgb(200, 200,200);
+.divResumeIcons {
+    text-align: center;
+    background-color: rgb(230, 230, 230);
+    padding: 20px 10px;
+    border-style: solid;
+    border-width: 1px;
 }
 
-.resumeDiv{
-
-    margin-bottom: 80px !important;
-
-    
+.selected {
+    background-color: rgb(200, 200, 200);
 }
 
-.firstResumeIcon{
-    
+.fullPageNavbar {
+    position: fixed;
+    left: 50px;
+    padding-top: 10px;
+    z-index: 10000;
+}
+
+.firstResumeIcon {
     border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
-.lastResumeIcon{
-    border-top-right-radius: 15px;
+.lastResumeIcon {
+    border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 
-.divResumeIcons{
-    border-top: solid;
-    border-bottom: solid;
+.fixedNavBar {
+    display: flex;
+    flex-direction: column;
+}
+
+:host ::ng-deep .resumeHeader {
+    font-size: 50px;
+    font-weight: 600;
+    color: #f57200;
+    text-align: center;
+}
+
+.verticalAlign {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.resumeSection {
+    position: relative;
 }

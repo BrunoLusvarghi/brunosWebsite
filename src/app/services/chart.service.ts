@@ -1,5 +1,5 @@
 import { Injectable, ɵConsole } from '@angular/core';
-import { CovidDataService } from './covid-data.service';
+import { CovidDataService } from './portfolio/covid-data.service';
 import { Country } from '../components/charts/charts.component';
 import { Subject } from 'rxjs';
 

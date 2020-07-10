@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, EventEmitter, Output } from '@angular/core';
-import { CovidDataService } from '../../services/covid-data.service';
+import { CovidDataService } from '../../services/portfolio/covid-data.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';

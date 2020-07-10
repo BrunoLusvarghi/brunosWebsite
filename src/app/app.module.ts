@@ -17,7 +17,6 @@ import { HorizontalBarChartComponent } from './components/charts/horizontal-bar-
 import { LineChartComponent } from './components/charts/line-chart/line-chart.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDialogModule} from '@angular/material/dialog';
-import { CovidDialogComponent } from './components/dialog/covid-dialog/covid-dialog.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ValidInputDirective } from './directives/valid-input.directive';
 import {CareerHistoryService} from './services/resume/career-history.service';
@@ -36,7 +35,13 @@ import { CovidComponent } from './components/covid/covid.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { JwtComponent } from './components/portfolio/jwt/jwt.component';
-import {AutosizeModule} from 'ngx-autosize';
+import { ApplicationFormComponent } from './components/portfolio/application-form/application-form.component';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
+import {MatCardModule} from '@angular/material/card';
+import { ProjectDialogComponent } from './components/portfolio/project-dialog/project-dialog.component';
+
+
 
 
 @NgModule({
@@ -46,7 +51,6 @@ import {AutosizeModule} from 'ngx-autosize';
     MultiselectAutocompleteComponent,
     HorizontalBarChartComponent,
     LineChartComponent,
-    CovidDialogComponent,
     ValidInputDirective,
     EducationHistoryComponent,
     CareerHistoryComponent,
@@ -56,7 +60,11 @@ import {AutosizeModule} from 'ngx-autosize';
     HomeComponent,
     ResumeComponent,
     CovidComponent,
-    JwtComponent
+    JwtComponent,
+    ApplicationFormComponent,
+    PortfolioComponent,
+    ProjectDialogComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -82,7 +90,8 @@ import {AutosizeModule} from 'ngx-autosize';
     NgbAccordionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    AutosizeModule
+    NgxPageScrollModule,
+    MatCardModule 
   ],
   exports: [ChartsComponent],
   providers: [EducationHistoryService,CareerHistoryService,ChartService,SkillsService],

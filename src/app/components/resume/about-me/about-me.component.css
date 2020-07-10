@@ -7,12 +7,30 @@ fa-icon {
     border-style: solid;
     border-width: 7 px;
     border-color: black;
-    width: 320px;
-    height: 320px;
+    width: 260px;
+    height: 260px;
 }
 
 .aboutMeDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 60px;
+    position: relative;
+}
+
+#over img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float: left;
+    margin-right: 100px;
+}
+
+#over {
+    width: 50%;
+}
+
+.divResumeIcon {
+    margin-top: 20px;
 }

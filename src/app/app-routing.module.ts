@@ -5,15 +5,16 @@ import {ResumeComponent} from './components/resume/resume/resume.component';
 import {ContactComponent} from './components/resume/contact/contact.component';
 import { CovidComponent } from './components/covid/covid.component';
 import { JwtComponent } from './components/portfolio/jwt/jwt.component';
+import { ApplicationFormComponent } from './components/portfolio/application-form/application-form.component';
 
 const routes: Routes = [
   {
     component: HomeComponent,
-    path : 'home'
+    path : '',
   },
   {
   component : CovidComponent,
-  path : ''
+  path : 'covid19Info'
 },
 {
   component : ResumeComponent,
@@ -22,6 +23,9 @@ const routes: Routes = [
 {
   component : ContactComponent,
   path : 'contact'
+},{
+  component: ApplicationFormComponent,
+  path : 'portfolio/form'
 }];
 
 @NgModule({

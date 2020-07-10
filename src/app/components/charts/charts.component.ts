@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { ChartService } from 'src/app/services/chart.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {CovidDialogComponent} from '../dialog/covid-dialog/covid-dialog.component';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 
@@ -27,12 +25,8 @@ export class ChartsComponent {
   }
 
 
-  constructor(private chartService: ChartService,public dialog: MatDialog) {
+  constructor(private chartService: ChartService) {
 
-    //Opens dialog box
-    const dialogRef = this.dialog.open(CovidDialogComponent, {
-      width: '500px' 
-    });
 
     
     this.getChartSelector();
@@ -40,7 +34,7 @@ export class ChartsComponent {
 
   
   //Returns the chart type from Chart Service; Updates value when a change is identified
-  getChartSelector() { console.log(this.chartService.chartSelector);this.chartSelector = this.chartService.chartSelector;}
+  getChartSelector() { this.chartSelector = this.chartService.chartSelector;}
 
   //Sets the chart type from Chart Service
   setChartSelector(chartType){this.chartService.setChartType(chartType);this.chartSelector = chartType};

@@ -61,7 +61,6 @@ background-repeat: no-repeat !important;
 }
 
 #divContent {
-    padding-top: 50px;
     flex: 1 0 auto;
 }
 
@@ -76,8 +75,36 @@ background-repeat: no-repeat !important;
     clear: both;
 }
 
-#wrapper {
+:host #wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
+    -webkit-transition: background-color 1000ms linear;
+}
+
+:host ::ng-deep .invalidInput {
+    border-bottom: 1.5px;
+    border-bottom-color: red;
+    border-bottom-style: solid;
+}
+
+:host .resumeComponents {
+    margin: 0 150px;
+}
+
+:host ::ng-deep h1,
+:host ::ng-deep h2,
+:host ::ng-deep h3,
+:host ::ng-deep h4,
+:host ::ng-deep h5,
+:host ::ng-deep h6 {
+    font-weight: 900 !important;
+    font-family: 'proza' !important;
+}
+
+:host html,
+body {
+    height: 100%;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: 300;
 }
