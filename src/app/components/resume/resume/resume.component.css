@@ -16,18 +16,22 @@
 
 .fullPageNavbar {
     position: fixed;
+    display: flex;
+    flex-direction: row;
     left: 50px;
     padding-top: 10px;
-    z-index: 10000;
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .firstResumeIcon {
     border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 .lastResumeIcon {
-    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 
@@ -43,7 +47,7 @@
     text-align: center;
 }
 
-.verticalAlign {
+.contentAlign {
     margin: 0;
     position: absolute;
     top: 50%;

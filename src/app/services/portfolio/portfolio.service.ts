@@ -21,7 +21,7 @@ export class PortfolioService {
         technologies : ['Angular','Html','CSS','chart.js','Angular Material','HttpClient','Node.js'],
         description : 'Project to bring awareness about the COVID-19 situation around the world. Navigate through the filters to see \n'
         + 'the COVID situation in a specific date or select some countries to compare data and situation',
-        url: 'http://bruno-dev.com/covidinfo',
+        url: 'http://bruno-dev.com/covid19Info',
         repository : 'https://github.com/BrunoLusvarghi/brunosWebsite/tree/master/src/app/components/covid'
       },
       {
