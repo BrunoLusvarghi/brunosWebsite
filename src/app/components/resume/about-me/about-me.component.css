@@ -67,9 +67,17 @@ fa-icon {
     padding-top: 50px;
 }
 
-#aboutMeSection {
-    width: 90%;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+@media screen and(min-width:481px) {
+    #aboutMeSection {
+        position: relative;
+    }
+}
+
+@media screen and (max-device-width: 480px) {
+    #aboutMeSection {
+        width: 90%;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
