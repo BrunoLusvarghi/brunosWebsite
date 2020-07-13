@@ -1,27 +1,19 @@
-
 <form class="example-form">
-    <mat-form-field class="example-full-width col-md-12">
-      <mat-chip-list #chipList aria-label="Fruit selection">
-        <mat-chip
-          *ngFor="let country of getSelectedCountries()"
-          (removed)="remove(country)">
-          {{country.name}}
-          <mat-icon matChipRemove >cancel</mat-icon>
-        </mat-chip>
-        
-        <input style=" font-size: 20px;"  #input 
-        placeholder="Countries"
-          type="text" matInput 
-          [formControl]="myControl" 
-          [matAutocomplete]="auto" 
-          [matChipInputFor]="chipList">
-    
-      </mat-chip-list>
-      
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option (click)="add(country)"  *ngFor="let country of filteredOptions | async" [value]="country">
-          {{country.name}}
-        </mat-option>
-      </mat-autocomplete>
+    <mat-form-field class="example-full-width col-md-1 col-sm-1 col-12 col-sm-12 col-12">
+        <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let country of getSelectedCountries()" (removed)="remove(country)">
+                {{country.name}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+
+            <input style=" font-size: 20px;" #input placeholder="Countries" type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" [matChipInputFor]="chipList">
+
+        </mat-chip-list>
+
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option (click)="add(country)" *ngFor="let country of filteredOptions | async" [value]="country">
+                {{country.name}}
+            </mat-option>
+        </mat-autocomplete>
     </mat-form-field>
-  </form>
+</form>

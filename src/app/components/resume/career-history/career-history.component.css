@@ -1,0 +1,24 @@
+@media screen and (min-width:781px) {
+    .divCareer {
+        width: 800px;
+    }
+}
+
+@media screen and (max-width:780px) {
+    .divCareer {
+        width: 460px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media screen and (max-width:480px) {
+    .divCareer {
+        width: 300px;
+    }
+}
+
+.divCareer {
+    padding-top: 50px;
+}

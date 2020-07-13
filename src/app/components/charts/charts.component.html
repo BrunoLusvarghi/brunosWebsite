@@ -1,9 +1,9 @@
 <div class="form-group">
 
-    <div class="row col-md-12">
+    <div class="row col-md-1 col-sm-1 col-12 col-sm-12 col-12">
 
 
-        <mat-accordion class="col-md-12">
+        <mat-accordion class="col-md-1 col-sm-1 col-12 col-sm-12 col-12">
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -13,9 +13,9 @@
                         Click to change chart information (chart by country)
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                <div class="row col-md-12">
+                <div class="row col-md-1 col-sm-1 col-12 col-sm-12 col-12">
 
-                    <div class="col-md-2" style="border-style: nonelid;border-color: lightgrey; border-radius: 5px;">
+                    <div class="col-md-2 col-sm-2 col-2" style="border-style: nonelid;border-color: lightgrey; border-radius: 5px;">
 
 
                         <div class="custom-control custom-radio">
@@ -33,7 +33,7 @@
 
 
                     </div>
-                    <div class="col-md-3 form-group" style="border-style: none;border-color: lightgrey; border-radius: 5px;">
+                    <div class="col-md-3 col-sm-3 col-3 form-group" style="border-style: none;border-color: lightgrey; border-radius: 5px;">
                         <mat-form-field>
                             <mat-label>Choose a date</mat-label>
                             <input [value]="getDate()" (dateChange)=" addEvent( 'change', $event) " readonly matInput [matDatepicker]="picker ">
@@ -43,9 +43,9 @@
                     </div>
                 </div>
 
-                <div class="row col-md-12">
-                    <label class="col-md-10">Filter by countries: </label>
-                    <div *ngIf="getIsLoaded()" class="col-md-10">
+                <div class="row col-md-1 col-sm-1 col-12 col-sm-12 col-12">
+                    <label class="col-md-1 col-sm-1 col-10">Filter by countries: </label>
+                    <div *ngIf="getIsLoaded()" class="col-md-1 col-sm-1 col-10">
                         <app-multiselect-autocomplete></app-multiselect-autocomplete>
                     </div>
 
@@ -57,14 +57,14 @@
     </div>
 
     <div style="margin-top: 20px;" class="row">
-        <div class="col-md-12">
+        <div class="col-md-1 col-sm-1 col-12 col-sm-12 col-12">
             <h1>{{chartSelector | titlecase}} ({{getStringDate()}}) </h1>
         </div>
 
     </div>
     <div class="row ">
 
-        <div *ngIf="getIsLoaded() " class="col-md-11">
+        <div *ngIf="getIsLoaded() " class="col-md-1 col-sm-1 col-11">
 
             <app-horizontal-bar-chart *ngIf="getSelectedCountriesCount()==0 "></app-horizontal-bar-chart>
 
@@ -72,7 +72,7 @@
 
         </div>
 
-        <div class="row col-md-12" style="display: flex; justify-content:space-evenly;">
+        <div class="row col-md-1 col-sm-1 col-12 col-sm-12 col-12" style="display: flex; justify-content:space-evenly;">
             <p style="text-align: center;">Data is retrieved from the public API https://corona-api.com/ <br> Data shown in the charts are based on each country official numbers and might show some inconsistencies.
 
             </p>

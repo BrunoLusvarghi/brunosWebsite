@@ -1,6 +1,45 @@
-h1,span{
+h1,
+span {
     font-weight: 500;
 }
-p{
-    font-size: medium;
+
+@media screen and (min-width:781px) {
+    .divEducation {
+        width: 800px;
+        padding-top: 50px;
+    }
+    p {
+        font-size: 20px;
+    }
+    h2 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width:780px) {
+    .divEducation {
+        width: 460px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #imgDiv {
+        display: none;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .divEducation {
+        width: 350px;
+    }
+    p {
+        font-size: 15px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+}
+
+.divEducation {
+    padding-top: 50px;
 }

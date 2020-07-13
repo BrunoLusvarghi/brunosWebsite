@@ -1,0 +1,10 @@
+.vl {
+    border-left: 3px solid rgb(0, 158, 174);
+    height: 500px;
+}
+
+@media screen and (max-width:480px) {
+    .vl {
+        display: none;
+    }
+}

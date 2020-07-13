@@ -1,11 +1,11 @@
-<div class="container" style="width: 800px;padding-top: 50px;">
+<div class="container divEducation">
     <h1 class="resumeHeader">Education</h1>
     <div *ngFor="let education of educationHistory" style="height: 200px;border-style: solid;border-color: black;" class="card flex-row flex-wrap">
-        <div class="col-md-2 card-header border-0">
+        <div id="imgDiv" class="col-md-2 col-sm-2 col-2 card-header border-0">
             <img style="max-width: 100%; max-height: 100%;" [src]="education.src" alt="">
         </div>
         <div class="card-body col-sm-10">
-            <h1 class="card-title">{{education.degree}} in {{education.fieldOfStudy}}</h1>
+            <h2 class="card-title">{{education.degree}} in {{education.fieldOfStudy}}</h2>
             <p>Institution: <span style="font-weight: 500;">{{education.institution}}</span></p>
             <p>Location: <span style="font-weight: 500;">{{education.location}}</span></p>
             <p>Completed: <span>{{education.completed}}</span></p>

@@ -12,8 +12,8 @@ import { ConfigService } from './services/configService';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'myWebsite';
-  backgroundColor = 'green';
+
+  backgroundColor = '';
 
   constructor(public router: Router, private configService : ConfigService) {
 
