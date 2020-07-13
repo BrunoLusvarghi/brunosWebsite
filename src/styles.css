@@ -17,3 +17,11 @@
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 } */
+
+:host body {
+    height: 100%;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: 300;
+    width: 100%;
+    position: fixed;
+}

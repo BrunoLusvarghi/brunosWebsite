@@ -14,6 +14,12 @@
     background-color: rgb(200, 200, 200);
 }
 
+@media screen and (max-width: 480px) {
+    .fullPageNavbar {
+        display: none !important;
+    }
+}
+
 .fullPageNavbar {
     position: fixed;
     display: flex;
@@ -41,19 +47,38 @@
 }
 
 :host ::ng-deep .resumeHeader {
-    font-size: 50px;
     font-weight: 600;
     color: #f57200;
     text-align: center;
 }
 
-.contentAlign {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+@media screen and (max-width:1000px) {
+     :host ::ng-deep .resumeHeader {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width:480px) {
+     :host ::ng-deep .resumeHeader {
+        font-size: 25px;
+    }
+}
+
+@media screen and (min-width:600px) {
+    .contentAlign {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (max-width:600px) {
+    .contentAlign {
+        width: 100%x;
+    }
 }
 
 .resumeSection {

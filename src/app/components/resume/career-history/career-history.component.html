@@ -1,18 +1,20 @@
-<div style="padding-top:15px;width: 800px;">
+<div class="divCareer">
     <h1 class="resumeHeader">My Career</h1>
-    <div class="row justify-content-md-center">
-        <ngb-accordion class="col-md-12" [closeOthers]="true" activeIds="1" style="padding-top: 50px;">
+    <div class="row">
+        <ngb-accordion class="col-md-12 col-sm-12 col-12" [closeOthers]="true" activeIds="1" style="padding-top: 50px;">
 
             <ngb-panel *ngFor="let job of careerHistory;let idx = index" [id]="idx" [title]="job.company">
                 <ng-template ngbPanelHeader let-opened="opened">
-                    <div class="row d-flex align-items-center justify-content-between">
-                        <div class="col-md-4">
-                            <button style="font-weight: 500;" ngbPanelToggle class="btn container-fluid text-left pl-0">{{job.company}}</button>
+                    <a>
+                        <div class="row d-flex align-items-center justify-content-between">
+                            <div class="col-md-4 col-sm-6 col-6">
+                                <button ngbPanelToggle style="font-weight: 500;" class="btn container-fluid text-left pl-0">{{job.company}}</button>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-6">
+                                <label class="btn container-fluid text-right  pl-0">{{job.period}}</label>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="btn container-fluid text-right  pl-0">{{job.period}}</label>
-                        </div>
-                    </div>
+                    </a>
                 </ng-template>
                 <ng-template ngbPanelContent>
                     {{job.description}}

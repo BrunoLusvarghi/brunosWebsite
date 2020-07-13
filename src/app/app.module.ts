@@ -26,7 +26,7 @@ import { CareerHistoryComponent } from './components/resume/career-history/caree
 import { SkillsComponent } from './components/resume/skills/skills.component';
 import { ChartService } from './services/chart.service';
 import { SkillsService } from './services/resume/skills.service';
-import { ContactComponent } from './components/resume/contact/contact.component';
+import { ContactComponent } from './components/contact/contact.component';
 import {AboutMeComponent}  from './components/resume/about-me/about-me.component';
 import {NgbModule, NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
 import {HomeComponent} from './components/home/home.component';
